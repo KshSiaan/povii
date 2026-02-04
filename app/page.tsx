@@ -1,65 +1,119 @@
+"use client";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
-
-export default function Home() {
+import { motion } from "motion/react";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
+export default function Page() {
+  const [currentStep, setCurrentStep] = useState(0);
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="h-dvh w-dvw relative overflow-hidden">
+      <motion.div
+        className="magicblob flex justify-center items-center -translate-x-1/2 -translate-y-1/2 bg-no-repeat! absolute"
+        initial={{
+          height: "80%",
+          width: "80%",
+          top: "50%",
+          left: "50%",
+        }}
+        animate={{
+          height: currentStep > 0 ? "30%" : "80%",
+          width: currentStep > 0 ? "30%" : "80%",
+          top: currentStep > 0 ? "15%" : "50%",
+          left: currentStep > 0 ? "50%" : "50%",
+        }}
+        transition={{
+          duration: 0.6,
+          //   ease: "easeInOut",
+          stiffness: 100,
+          type: "spring",
+        }}
+      >
+        <motion.div
+          className="h-2/3 w-2/3"
+          initial={{ y: 0 }}
+          animate={{ y: [-20, 20, -20] }}
+          transition={{
+            duration: 10,
+            ease: "easeInOut",
+            repeat: Infinity,
+          }}
+        >
+          <Image
+            src={"/povi_flying.webp"}
+            height={500}
+            width={300}
+            draggable={false}
+            className="h-full w-full object-contain"
+            alt="povii-fly"
+          />
+        </motion.div>
+      </motion.div>
+      <motion.div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+        initial={{ opacity: 0, display: "none" }}
+        animate={{
+          opacity: currentStep > 0 ? 1 : 0,
+          display: currentStep > 0 ? "block" : "none",
+        }}
+        transition={{ duration: 0.5 }}
+      >
+        <h1 className="text-4xl font-bold text-center">Hi, I'm Povii!</h1>
+        <p className="text-center text-muted-foreground mt-4 text-sm">
+          My main goal is to help you study and learn effectively.
+          <br />
+          With my AI Skills and interactive features, I can make your learning
+          experience fun and engaging!
+        </p>
+        <div className="flex justify-center items-center mt-6">
+          <Button className="mx-auto">Click here for tutorial</Button>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </motion.div>
+      <motion.div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+        initial={{ opacity: 0, display: "none" }}
+        animate={{
+          opacity: currentStep > 1 ? 1 : 0,
+          display: currentStep > 1 ? "block" : "none",
+        }}
+        transition={{ duration: 3 }}
+      >
+        <h1 className="text-4xl font-bold text-center">Hi, I'm Povii!</h1>
+        <p className="text-center text-muted-foreground mt-4 text-sm">
+          My main goal is to help you study and learn effectively.
+          <br />
+          With my AI Skills and interactive features, I can make your learning
+          experience fun and engaging!
+        </p>
+        <div className="flex justify-center items-center mt-6">
+          <Button className="mx-auto">Click here for tutorial</Button>
         </div>
-      </main>
-    </div>
+      </motion.div>
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2  flex gap-4">
+        <Button
+          onClick={() => {
+            setCurrentStep(currentStep - 1);
+          }}
+          className={cn(currentStep > 0 ? "block" : "hidden")}
+          variant={"ghost"}
+        >
+          Go back
+        </Button>
+        <Button
+          onClick={() => {
+            setCurrentStep(currentStep + 1);
+          }}
+          variant={currentStep > 0 ? "link" : "default"}
+          asChild={currentStep >= 1}
+        >
+          {currentStep === 0 ? (
+            "Introduce Yourself"
+          ) : (
+            <Link href="/app">Start Learning with Povii</Link>
+          )}
+        </Button>
+      </div>
+    </main>
   );
 }
