@@ -22,9 +22,9 @@
   --accent-foreground: oklch(0.3199 0.0163 300.6717);
   --destructive: oklch(0.6730 0.2146 25.0397);
   --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.9220 0 0);
-  --input: oklch(0.9220 0 0);
-  --ring: oklch(0.7080 0 0);
+  --border: oklch(81.406% 0.00009 271.152);
+  --input: oklch(81.406% 0.00009 271.152);
+  --ring: oklch(81.406% 0.00009 271.152);
   --chart-1: oklch(0.8100 0.1000 252);
   --chart-2: oklch(0.6200 0.1900 260);
   --chart-3: oklch(0.5500 0.2200 263);
@@ -180,4 +180,19 @@
   background-position: center center;
   background-repeat: repeat;
   background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 1000 1000%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3CclipPath id=%22a%22%3E%3Cpath fill=%22currentColor%22 d=%22M757 588q-15 88-82 166t-148-4.5Q446 667 403.5 634t-221-83.5Q4 500 77.5 373T297 285q146 39 229-41t222-52.5q139 27.5 81.5 168T757 588Z%22%2F%3E%3C%2FclipPath%3E%3C%2Fdefs%3E%3Cg clip-path=%22url(%23a)%22%3E%3Cpath fill=%22%237637E6%22 d=%22M757 588q-15 88-82 166t-148-4.5Q446 667 403.5 634t-221-83.5Q4 500 77.5 373T297 285q146 39 229-41t222-52.5q139 27.5 81.5 168T757 588Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.25s ease-in-out;
 }

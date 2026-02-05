@@ -5,8 +5,14 @@ import { motion } from "motion/react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import {
+  ExpandableScreen,
+  ExpandableScreenContent,
+  ExpandableScreenTrigger,
+} from "@/components/ui/expandable-screen";
 export default function Page() {
   const [currentStep, setCurrentStep] = useState(0);
+  const [isExpanded, setIsExpanded] = useState(false);
   return (
     <main className="h-dvh w-dvw relative overflow-hidden">
       <motion.div
@@ -54,8 +60,8 @@ export default function Page() {
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
         initial={{ opacity: 0, display: "none" }}
         animate={{
-          opacity: currentStep > 0 ? 1 : 0,
-          display: currentStep > 0 ? "block" : "none",
+          opacity: currentStep === 1 ? 1 : 0,
+          display: currentStep === 1 ? "block" : "none",
         }}
         transition={{ duration: 0.5 }}
       >
@@ -77,20 +83,16 @@ export default function Page() {
           opacity: currentStep > 1 ? 1 : 0,
           display: currentStep > 1 ? "block" : "none",
         }}
-        transition={{ duration: 3 }}
+        transition={{ duration: 0.5 }}
       >
-        <h1 className="text-4xl font-bold text-center">Hi, I'm Povii!</h1>
-        <p className="text-center text-muted-foreground mt-4 text-sm">
-          My main goal is to help you study and learn effectively.
-          <br />
-          With my AI Skills and interactive features, I can make your learning
-          experience fun and engaging!
-        </p>
-        <div className="flex justify-center items-center mt-6">
-          <Button className="mx-auto">Click here for tutorial</Button>
+        <h1 className="text-4xl font-bold text-center">One Last Step</h1>
+        <div className="flex justify-center">
+          <Button className="mt-6" asChild>
+            <Link href={"/auth/login"}>Tell Povii about you</Link>
+          </Button>
         </div>
       </motion.div>
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2  flex gap-4">
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2  flex gap-4 z-10">
         <Button
           onClick={() => {
             setCurrentStep(currentStep - 1);
@@ -104,14 +106,14 @@ export default function Page() {
           onClick={() => {
             setCurrentStep(currentStep + 1);
           }}
-          variant={currentStep > 0 ? "link" : "default"}
-          asChild={currentStep >= 1}
+          variant={currentStep > 1 ? "link" : "default"}
+          asChild={currentStep >= 2}
         >
-          {currentStep === 0 ? (
-            "Introduce Yourself"
-          ) : (
-            <Link href="/app">Start Learning with Povii</Link>
-          )}
+          {currentStep === 0
+            ? "Introduce Yourself"
+            : currentStep === 1
+              ? "One Last Step"
+              : null}
         </Button>
       </div>
     </main>
