@@ -11,7 +11,6 @@ export default function Layout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const pageKey = Math.random().toString(36).substring(7);
   return (
     <main className="bg-primary h-dvh w-full flex flex-col gap-6 justify-center items-center px-4">
       <Card className="max-w-xl w-full relative overflow-visible pt-0">
@@ -24,10 +23,9 @@ export default function Layout({
             alt="povii-sit"
             priority
             draggable={false}
-            key={pageKey}
           />
         </div>
-        <HoggerProvider pageKey={pageKey}>{children}</HoggerProvider>
+        <HoggerProvider>{children}</HoggerProvider>
       </Card>
       <div className="">
         <p className="font-bold text-background text-sm w-full mb-6 text-center">
