@@ -53,6 +53,7 @@ export default function Page() {
             draggable={false}
             className="h-full w-full object-contain"
             alt="povii-fly"
+            priority
           />
         </motion.div>
       </motion.div>
