@@ -75,6 +75,9 @@ export default function Page() {
                     <PromptInputSelectItem value="explainer">
                       Explainer
                     </PromptInputSelectItem>
+                    <PromptInputSelectItem value="debater">
+                      Debater
+                    </PromptInputSelectItem>
                   </PromptInputSelectContent>
                 </PromptInputSelect>
                 <PromptInputSubmit />
