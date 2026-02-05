@@ -8,12 +8,19 @@ import {
   PromptInputAttachment,
   PromptInputAttachments,
   PromptInputBody,
+  PromptInputCommand,
   PromptInputFooter,
+  PromptInputSelect,
+  PromptInputSelectContent,
+  PromptInputSelectItem,
+  PromptInputSelectTrigger,
+  PromptInputSelectValue,
   PromptInputSubmit,
   PromptInputTextarea,
   PromptInputTools,
 } from "@/components/ai/prompt-input";
 import AppHeader from "@/components/core/app-header";
+import { DropdownMenu } from "@/components/ui/dropdown-menu";
 import { Suspense } from "react";
 
 export default function Page() {
@@ -52,7 +59,26 @@ export default function Page() {
                   </PromptInputActionMenuContent>
                 </PromptInputActionMenu>
               </PromptInputTools>
-              <PromptInputSubmit />
+              <div className="flex items-center gap-4">
+                <PromptInputSelect>
+                  <PromptInputSelectTrigger>
+                    <PromptInputSelectValue placeholder="Preference" />
+                  </PromptInputSelectTrigger>
+                  <PromptInputSelectContent
+                    align="end"
+                    position="popper"
+                    side="top"
+                  >
+                    <PromptInputSelectItem value="conversation">
+                      Conversation
+                    </PromptInputSelectItem>
+                    <PromptInputSelectItem value="explainer">
+                      Explainer
+                    </PromptInputSelectItem>
+                  </PromptInputSelectContent>
+                </PromptInputSelect>
+                <PromptInputSubmit />
+              </div>
             </PromptInputFooter>
           </PromptInput>
         </div>
