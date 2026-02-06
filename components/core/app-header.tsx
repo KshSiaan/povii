@@ -34,9 +34,6 @@ export default function AppHeader() {
       /> */}
       <h3 className="font-black text-secondary text-xl">POVII</h3>
       <div className="">
-        <Button variant={"ghost"} size={"icon-lg"}>
-          <UserCircle className="size-6" />
-        </Button>
         <Sheet>
           <SheetTrigger asChild>
             <Button size={"icon-lg"} variant={"ghost"} className="text-primary">
@@ -108,6 +105,16 @@ export default function AppHeader() {
             </div>
           </SheetContent>
         </Sheet>
+        <Button
+          variant={"ghost"}
+          className="hover:text-primary"
+          size={"icon-lg"}
+          asChild
+        >
+          <Link href={"/me"}>
+            <UserCircle className="size-6" />
+          </Link>
+        </Button>
       </div>
     </header>
   );
