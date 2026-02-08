@@ -12,17 +12,19 @@ import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { useState } from "react";
 
 const nodes = [
   { name: "Agent", href: "/app" },
-  { name: "Study Planner", href: "/planner" },
-  { name: "Quiz", href: "/quizer" },
-  { name: "Tutor", href: "/tutor" },
-  { name: "Notepad", href: "/notepad" },
+  { name: "Study Planner", href: "/app/planner" },
+  { name: "Quiz", href: "/app/quizer" },
+  { name: "Tutor", href: "/app/tutor" },
+  { name: "Notepad", href: "/app/notepad" },
 ];
 
 export default function AppHeader() {
   const path = usePathname();
+  const [open, setOpen] = useState(false);
   return (
     <header className="h-15.5 px-3 w-dvw bg-background flex justify-between items-center">
       {/* <Image
@@ -34,7 +36,17 @@ export default function AppHeader() {
       /> */}
       <h3 className="font-black text-secondary text-xl">POVII</h3>
       <div className="">
-        <Sheet>
+        <Button
+          variant={"ghost"}
+          className="hover:text-primary"
+          size={"icon-lg"}
+          asChild
+        >
+          <Link href={"/me"}>
+            <UserCircle className="size-6" />
+          </Link>
+        </Button>
+        <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger asChild>
             <Button size={"icon-lg"} variant={"ghost"} className="text-primary">
               <LayoutGridIcon
@@ -51,9 +63,13 @@ export default function AppHeader() {
             <div className="flex flex-col h-full w-full flex-1">
               {/* Top Cards Grid */}
 
-              <div className="w-full grid grid-cols-3 sm:grid-cols-3 md:grid-cols-6 2xl:grid-cols-8 gap-6 p-6">
+              <div className="w-full grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 2xl:grid-cols-8 gap-6 p-6">
                 {nodes?.map((node) => (
-                  <Link href={node.href} key={node.name}>
+                  <Link
+                    key={node.name}
+                    href={node.href}
+                    onClick={() => setOpen(false)}
+                  >
                     <Card
                       className={cn(
                         "aspect-video hover:bg-card transition-colors",
@@ -62,7 +78,7 @@ export default function AppHeader() {
                       )}
                     >
                       <CardContent className="flex h-full w-full justify-center items-center">
-                        <h4 className="font-bold text-2xl text-primary">
+                        <h4 className="font-bold xl:text-lg  text-primary">
                           {node.name}
                         </h4>
                       </CardContent>
@@ -105,16 +121,6 @@ export default function AppHeader() {
             </div>
           </SheetContent>
         </Sheet>
-        <Button
-          variant={"ghost"}
-          className="hover:text-primary"
-          size={"icon-lg"}
-          asChild
-        >
-          <Link href={"/me"}>
-            <UserCircle className="size-6" />
-          </Link>
-        </Button>
       </div>
     </header>
   );

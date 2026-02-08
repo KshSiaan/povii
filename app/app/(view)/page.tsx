@@ -26,9 +26,6 @@ import { Suspense } from "react";
 export default function Page() {
   return (
     <>
-      <Suspense>
-        <AppHeader />
-      </Suspense>
       <main className="flex-1 pb-12 w-full flex flex-col justify-end items-center container mx-auto px-4">
         <div className="flex-1 w-full flex flex-col justify-start items-start">
           <div className="h-full w-full flex justify-center items-center flex-1">

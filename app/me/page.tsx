@@ -5,6 +5,7 @@ import {
   AvatarImage,
 } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { MailIcon, PencilIcon, Settings2Icon } from "lucide-react";
 import React from "react";
 
@@ -34,6 +35,12 @@ export default function Page() {
             </Button>
           </div>
         </div>
+      </div>
+      <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <Card className="bg-muted aspect-video"></Card>
+        <Card className="bg-muted aspect-video"></Card>
+        <Card className="bg-muted aspect-video"></Card>
+        <Card className="bg-muted aspect-video"></Card>
       </div>
     </main>
   );
